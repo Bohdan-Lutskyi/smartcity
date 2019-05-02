@@ -6,9 +6,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CommentDAO {
 
-    Comment save(Comment budget);
+    Comment create(Comment comment);
 
-    Comment findById(Integer id);
+    Comment get(long id);
 
-    boolean deleteById(Integer id);
+    Comment update(Comment comment);
+
+    boolean delete(long id);
 }

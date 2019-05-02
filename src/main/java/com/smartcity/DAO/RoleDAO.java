@@ -6,9 +6,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RoleDAO {
 
-    Role save(Role budget);
+    Role create(Role role);
 
-    Role findById(Integer id);
+    Role get(long id);
 
-    boolean deleteById(Integer id);
+    Role update(Role role);
+
+    boolean delete(long id);
 }
