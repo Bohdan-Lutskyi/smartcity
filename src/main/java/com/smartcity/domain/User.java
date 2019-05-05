@@ -10,18 +10,21 @@ public class User {
     private String surname;
     private String name;
     private String phoneNumber;
-    private Date createDate;
-    private Date updateDate;
+    private Date createdDate;
+    private Date updatedDate;
 
-    public User(Long id, String email, String password, String surname, String name, String phoneNumber, Date createDate, Date updateDate) {
+    public User() {
+    }
+
+    public User(Long id, String email, String password, String surname, String name, String phoneNumber, Date createdDate, Date updatedDate) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.surname = surname;
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.createDate = createDate;
-        this.updateDate = updateDate;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
     }
 
     public Long getId() {
@@ -72,19 +75,47 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
+    public Date getUpdatedDate() {
+        return updatedDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof User){
+            User user = (User) obj;
+
+            return this.getName().equals(user.getName()) &&
+                    this.getSurname().equals(user.getSurname()) &&
+                    this.getEmail().equals(user.getEmail()) &&
+                    this.getPhoneNumber().equals(user.getPhoneNumber());
+
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", surname='" + surname + '\'' +
+                ", name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", createdDate=" + createdDate +
+                ", updatedDate=" + updatedDate +
+                '}';
     }
 }

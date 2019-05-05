@@ -3,14 +3,16 @@ package com.smartcity.DAO;
 import com.smartcity.domain.User;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface UserDAO {
 
-    User create(User budget);
+    Optional<User> create(User user);
 
-    User get(long id);
+    Optional<User> get(long id);
 
-    User update(User budget);
+    Optional<User> update(User user);
 
-    boolean deleteById(long id);
+    boolean delete(long id);
 }
