@@ -1,9 +1,9 @@
-package com.smartcity.DAO;
+package com.smartcity.dao;
 
 
 import com.smartcity.domain.User;
 import com.smartcity.exception.DBOperationException;
-import com.smartcity.mappers.UserMapper;
+import com.smartcity.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -12,12 +12,12 @@ import java.sql.Date;
 import java.util.Optional;
 
 
-public class UserDAOImpl implements UserDAO {
+public class UserDaoImpl implements UserDao {
 
     private JdbcTemplate template;
 
     @Autowired
-    public UserDAOImpl(DataSource dataSource){this.template = new JdbcTemplate(dataSource);}
+    public UserDaoImpl(DataSource dataSource){this.template = new JdbcTemplate(dataSource);}
 
     @Override
     public Optional<User> create(User user) {
@@ -73,10 +73,13 @@ public class UserDAOImpl implements UserDAO {
         String SQL_CREATE = "insert into Users (email, password, surname, " +
                 "name, phone_number, created_date, updated_date) " +
                 "values (?,?,?,?,?,?,?)";
+
         String SQL_GET_BY_ID = "select * from Users where id = ?";
+
         String SQL_UPDATE = "update Users set " +
                 "email = ?, password = ?, surname = ?, name = ?, " +
                 "phone_number = ?, updated_date = ? where id = ?";
+
         String SQL_DELETE = "delete from Users where id = ?";
     }
         private static Date getCurrentDate(){

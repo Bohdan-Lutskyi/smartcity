@@ -1,10 +1,10 @@
-package com.smartcity.DAO;
+package com.smartcity.dao;
 
 import com.smartcity.domain.Budget;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BudgetDAO {
+public interface BudgetDao {
 
     Budget create(Budget budget);
 

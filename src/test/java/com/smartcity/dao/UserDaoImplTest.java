@@ -1,6 +1,5 @@
-package dao;
+package com.smartcity.dao;
 
-import com.smartcity.DAO.UserDAOImpl;
 import com.smartcity.domain.User;
 import com.smartcity.exception.DBOperationException;
 import org.junit.jupiter.api.AfterEach;
@@ -13,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class UserDaoImplTest {
-    private UserDAOImpl userDAO;
+    private UserDaoImpl userDAO;
     private User user;
     private DriverManagerDataSource dataSource;
 
@@ -24,7 +23,7 @@ public class UserDaoImplTest {
         dataSource.setUrl("jdbc:mysql://192.168.99.100:3306/smartcity?useSSL=false");
         dataSource.setUsername("root");
         dataSource.setPassword("root");
-        userDAO = new UserDAOImpl(dataSource);
+        userDAO = new UserDaoImpl(dataSource);
 
         user = new User();
         user.setName("John");
@@ -35,13 +34,13 @@ public class UserDaoImplTest {
     }
 
     @Test
-    public void whenCreatingUser_ReturnsUser(){
+    public void creatingUser(){
         assertEquals(user, userDAO.create(user).get());
     }
 
 
     @Test
-    public void whenCreatingUser_GetUserReturnsCorrectUser(){
+    public void gettingUserById(){
         userDAO.create(user);
 
         User resulUser = userDAO.get(1).get();

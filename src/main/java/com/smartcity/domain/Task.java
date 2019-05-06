@@ -1,35 +1,39 @@
 package com.smartcity.domain;
 
-import java.math.BigDecimal;
+import java.lang.Long;
 import java.sql.Date;
+import java.util.List;
+import java.util.Objects;
 
 public class Task {
 
     private Long id;
     private String title;
-    private Date createDate;
-    private Date updateDate;
     private String description;
     private Date deadlineDate;
-    private BigDecimal budget;
-    private BigDecimal approvedBudget;
-    private Long taskStatusId;
+    private String taskStatus;
+    private Long budget;
+    private Long approvedBudget;
+    private Date createdDate;
+    private Date updatedDate;
     private Long userOrganizationId;
+    private List<Transaction> transactionList;
 
     public Task() {
     }
 
-    public Task(Long id, String title, Date createDate, Date updateDate, String description, Date deadlineDate,
-                BigDecimal budget, BigDecimal approvedBudget, Long taskStatusId, Long userOrganizationId) {
+    public Task(Long id, String title, String description, Date deadlineDate, String taskStatus,
+                Long budget, Long approvedBudget, Date createdDate, Date updatedDate,
+                Long userOrganizationId) {
         this.id = id;
         this.title = title;
-        this.createDate = createDate;
-        this.updateDate = updateDate;
         this.description = description;
         this.deadlineDate = deadlineDate;
+        this.taskStatus = taskStatus;
         this.budget = budget;
         this.approvedBudget = approvedBudget;
-        this.taskStatusId = taskStatusId;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
         this.userOrganizationId = userOrganizationId;
     }
 
@@ -49,22 +53,6 @@ public class Task {
         this.title = title;
     }
 
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -81,28 +69,44 @@ public class Task {
         this.deadlineDate = deadlineDate;
     }
 
-    public BigDecimal getBudget() {
+    public String getTaskStatus() {
+        return taskStatus;
+    }
+
+    public void setTaskStatus(String taskStatus) {
+        this.taskStatus = taskStatus;
+    }
+
+    public Long getBudget() {
         return budget;
     }
 
-    public void setBudget(BigDecimal budget) {
+    public void setBudget(Long budget) {
         this.budget = budget;
     }
 
-    public BigDecimal getApprovedBudget() {
+    public Long getApprovedBudget() {
         return approvedBudget;
     }
 
-    public void setApprovedBudget(BigDecimal approvedBudget) {
+    public void setApprovedBudget(Long approvedBudget) {
         this.approvedBudget = approvedBudget;
     }
 
-    public Long getTaskStatusId() {
-        return taskStatusId;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setTaskStatusId(Long taskStatusId) {
-        this.taskStatusId = taskStatusId;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     public Long getUserOrganizationId() {
@@ -111,5 +115,55 @@ public class Task {
 
     public void setUserOrganizationId(Long userOrganizationId) {
         this.userOrganizationId = userOrganizationId;
+    }
+
+    public List<Transaction> getTransactionList() {
+        return transactionList;
+    }
+
+    public void setTransactionList(List<Transaction> transactionList) {
+        this.transactionList = transactionList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return id.equals(task.id) &&
+                title.equals(task.title) &&
+                description.equals(task.description) &&
+                Objects.equals(deadlineDate, task.deadlineDate) &&
+                taskStatus.equals(task.taskStatus) &&
+                Objects.equals(budget, task.budget) &&
+                Objects.equals(approvedBudget, task.approvedBudget) &&
+                createdDate.equals(task.createdDate) &&
+                Objects.equals(updatedDate, task.updatedDate) &&
+                userOrganizationId.equals(task.userOrganizationId) &&
+                Objects.equals(transactionList, task.transactionList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, description, deadlineDate, taskStatus,
+                budget, approvedBudget, createdDate, updatedDate,
+                userOrganizationId, transactionList);
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", deadlineDate=" + deadlineDate +
+                ", taskStatus=" + taskStatus +
+                ", budget=" + budget +
+                ", approvedBudget=" + approvedBudget +
+                ", createdDate=" + createdDate +
+                ", updatedDate=" + updatedDate +
+                ", userOrganizationId=" + userOrganizationId +
+                ", transactionList=" + transactionList +
+                '}';
     }
 }
