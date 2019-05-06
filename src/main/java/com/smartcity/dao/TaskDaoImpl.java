@@ -76,16 +76,16 @@ public class TaskDaoImpl implements TaskDao {
         String SQL_CREATE = "Insert into Tasks(title, description, " +
                 "deadline_date, task_status,  budget,  " +
                 "approved_budget, created_date, updated_date," +
-                "users_organizations_id) values (?,?,?,?,?,?,?,?,?);";
+                "users_organizations_id) values (?,?,?,?,?,?,?,?,?)";
 
         String SQL_GET_BY_ID = "select * from Tasks where id = ?";
 
         String SQL_UPDATE = "Update Tasks set title = ? , description = ?, " +
                 "deadline_date = ?, task_status = ?, budget = ?, " +
                 "approved_budget = ?, created_date = ?, " +
-                "updated_date = ?,  users_organizations_id = ? where id = ?;";
+                "updated_date = ?,  users_organizations_id = ? where id = ?";
 
-        String SQL_DELETE = "Delete from Tasks where id = ?;";
+        String SQL_DELETE = "Delete from Tasks where id = ?";
     }
 
     private static class CurrentDate {
