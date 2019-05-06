@@ -1,14 +1,14 @@
-package com.smartcity.exception;
+package com.smartcity.exceptions;
 
-public class DBOperationException extends RuntimeException{
+public class DbOperationException extends RuntimeException {
 
     private String name;
 
-    public DBOperationException(String message) {
+    public DbOperationException(String message) {
         super(message);
     }
 
-    public DBOperationException(String message, String name) {
+    public DbOperationException(String message, String name) {
         super(message);
         this.name = name;
     }
