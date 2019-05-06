@@ -8,11 +8,11 @@ import java.util.Optional;
 @Repository
 public interface TaskDao {
 
-    Optional create(Task task);
+    Optional<Task> create(Task task);
 
-    Optional get(long id);
+    Optional<Task> get(long id);
 
-    Optional update(Task task);
+    Optional<Task> update(Task task);
 
     boolean delete(long id);
 }
