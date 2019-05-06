@@ -6,16 +6,19 @@ public class Organization {
 
     private Long id;
     private String name;
-    private String addres;
-    private Date createDate;
-    private Date updateDate;
+    private String address;
+    private Date createdDate;
+    private Date updatedDate;
 
-    public Organization(Long id, String name, String addres, Date createDate, Date updateDate) {
+    public Organization() {
+    }
+
+    public Organization(Long id, String name, String addres, Date createdDate, Date updatedDate) {
         this.id = id;
         this.name = name;
-        this.addres = addres;
-        this.createDate = createDate;
-        this.updateDate = updateDate;
+        this.address = addres;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
     }
 
     public Long getId() {
@@ -34,27 +37,27 @@ public class Organization {
         this.name = name;
     }
 
-    public String getAddres() {
-        return addres;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddres(String addres) {
-        this.addres = addres;
+    public void setAddress(String addres) {
+        this.address = addres;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
+    public Date getUpdatedDate() {
+        return updatedDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
     }
 }

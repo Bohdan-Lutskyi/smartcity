@@ -5,15 +5,18 @@ import java.sql.Date;
 public class Role {
 
     private Long id;
-    private Long name;
-    private Date createDate;
-    private Date updateDate;
+    private String name;
+    private Date createdDate;
+    private Date updatedDate;
 
-    public Role(Long id, Long name, Date createDate, Date updateDate) {
+    public Role() {
+    }
+
+    public Role(Long id, String name, Date createdDate, Date updatedDate) {
         this.id = id;
         this.name = name;
-        this.createDate = createDate;
-        this.updateDate = updateDate;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
     }
 
     public Long getId() {
@@ -24,27 +27,27 @@ public class Role {
         this.id = id;
     }
 
-    public Long getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Long name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
+    public Date getUpdatedDate() {
+        return updatedDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
     }
 }

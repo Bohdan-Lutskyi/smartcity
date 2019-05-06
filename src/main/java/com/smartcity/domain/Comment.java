@@ -6,18 +6,21 @@ public class Comment {
 
     private Long id;
     private String description;
-    private Date createDate;
-    private Date updateDate;
+    private Date createdDate;
+    private Date updatedDate;
     private Long userId;
-    private Long TaskId;
+    private Long taskId;
 
-    public Comment(Long id, String description, Date createDate, Date updateDate, Long userId, Long taskId) {
+    public Comment() {
+    }
+
+    public Comment(Long id, String description, Date createdDate, Date updatedDate, Long userId, Long taskId) {
         this.id = id;
         this.description = description;
-        this.createDate = createDate;
-        this.updateDate = updateDate;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
         this.userId = userId;
-        TaskId = taskId;
+        this.taskId = taskId;
     }
 
     public Long getId() {
@@ -36,20 +39,20 @@ public class Comment {
         this.description = description;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
+    public Date getUpdatedDate() {
+        return updatedDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     public Long getUserId() {
@@ -61,10 +64,10 @@ public class Comment {
     }
 
     public Long getTaskId() {
-        return TaskId;
+        return taskId;
     }
 
     public void setTaskId(Long taskId) {
-        TaskId = taskId;
+        this.taskId = taskId;
     }
 }
