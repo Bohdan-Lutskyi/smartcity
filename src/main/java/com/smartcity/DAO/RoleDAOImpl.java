@@ -1,10 +1,10 @@
-package com.smartcity.DAO;
+package com.smartcity.dao;
 
 import com.smartcity.domain.Role;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RoleDAOImpl implements RoleDAO {
+public class RoleDaoImpl implements RoleDao {
 
     public Role create(Role role) {
         return null;

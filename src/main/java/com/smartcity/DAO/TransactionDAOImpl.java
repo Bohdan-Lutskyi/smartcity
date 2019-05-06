@@ -1,10 +1,10 @@
-package com.smartcity.DAO;
+package com.smartcity.dao;
 
 import com.smartcity.domain.Transaction;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class TransactionDAOImpl implements  TransactionDAO{
+public class TransactionDaoImpl implements  TransactionDao{
 
     public Transaction create(Transaction transaction) {
         return null;

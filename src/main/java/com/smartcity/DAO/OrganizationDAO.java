@@ -1,10 +1,10 @@
-package com.smartcity.DAO;
+package com.smartcity.dao;
 
 import com.smartcity.domain.Organization;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrganizationDAO {
+public interface OrganizationDao {
 
     Organization create(Organization org);
 

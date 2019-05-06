@@ -1,10 +1,10 @@
-package com.smartcity.DAO;
+package com.smartcity.dao;
 
 import com.smartcity.domain.Comment;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CommentDAOImpl implements CommentDAO {
+public class CommentDaoImpl implements CommentDao {
 
     public Comment create(Comment comment) {
         return null;

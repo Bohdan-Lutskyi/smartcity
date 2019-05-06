@@ -1,14 +1,15 @@
-package com.smartcity.DAO;
+package com.smartcity.dao;
 
+import com.smartcity.dao.TaskDao;
 import com.smartcity.domain.Task;
-import com.smartcity.mappers.TaskMapper;
+import com.smartcity.mapper.TaskMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.sql.Date;
 
-public class TaskDAOImpl implements TaskDAO{
+public class TaskDaoImpl implements TaskDao {
 
     private JdbcTemplate template;
 
@@ -20,7 +21,7 @@ public class TaskDAOImpl implements TaskDAO{
             template.update(Queries.SQL_CREATE, task.getId(), task.getTitle(),
                     CurrentDate.getCurrentDate(), CurrentDate.getCurrentDate(),
                     task.getDescription(), task.getDeadlineDate(), task.getBudget(),
-                    task.getApprovedBudget(), task.getTaskStatusId(), task.getUserOrganizationId());
+                    task.getApprovedBudget(), task.getUserOrganizationId());
             return task;
         }catch (Exception e){
             return null;
