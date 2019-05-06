@@ -1,6 +1,5 @@
 package com.smartcity.dao;
 
-
 import com.smartcity.domain.User;
 import com.smartcity.exception.DBOperationException;
 import com.smartcity.mapper.UserMapper;
@@ -8,16 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Optional;
-
 
 public class UserDaoImpl implements UserDao {
 
     private JdbcTemplate template;
 
     @Autowired
-    public UserDaoImpl(DataSource dataSource){this.template = new JdbcTemplate(dataSource);}
+    public UserDaoImpl(DataSource dataSource) {
+        this.template = new JdbcTemplate(dataSource);
+    }
 
     @Override
     public Optional<User> create(User user) {
@@ -28,7 +28,7 @@ public class UserDaoImpl implements UserDao {
                     getCurrentDate(), getCurrentDate());
 
             return Optional.of(user);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new DBOperationException("Create User exception");
         }
     }
@@ -40,7 +40,7 @@ public class UserDaoImpl implements UserDao {
                     Queries.SQL_GET_BY_ID,
                     UserMapper.getInstance(),
                     id));
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new DBOperationException("Get User exception");
         }
     }
@@ -54,7 +54,7 @@ public class UserDaoImpl implements UserDao {
                     getCurrentDate(), user.getId());
 
             return Optional.of(user);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new DBOperationException("Update User exception");
         }
     }
@@ -64,12 +64,12 @@ public class UserDaoImpl implements UserDao {
         try {
             int result = template.update(Queries.SQL_DELETE, id);
             return result > 0;
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new DBOperationException("Delete User Exception");
         }
     }
 
-    private interface Queries{
+    private interface Queries {
         String SQL_CREATE = "insert into Users (email, password, surname, " +
                 "name, phone_number, created_date, updated_date) " +
                 "values (?,?,?,?,?,?,?)";
@@ -82,7 +82,8 @@ public class UserDaoImpl implements UserDao {
 
         String SQL_DELETE = "delete from Users where id = ?";
     }
-        private static Date getCurrentDate(){
-            return new Date(System.currentTimeMillis());
+
+    private static LocalDate getCurrentDate() {
+        return LocalDate.now();
     }
 }

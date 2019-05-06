@@ -2,6 +2,7 @@ package com.smartcity.domain;
 
 import java.lang.Long;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,20 +11,20 @@ public class Task {
     private Long id;
     private String title;
     private String description;
-    private Date deadlineDate;
+    private LocalDate deadlineDate;
     private String taskStatus;
     private Long budget;
     private Long approvedBudget;
-    private Date createdDate;
-    private Date updatedDate;
+    private LocalDate createdDate;
+    private LocalDate updatedDate;
     private Long userOrganizationId;
     private List<Transaction> transactionList;
 
     public Task() {
     }
 
-    public Task(Long id, String title, String description, Date deadlineDate, String taskStatus,
-                Long budget, Long approvedBudget, Date createdDate, Date updatedDate,
+    public Task(Long id, String title, String description, LocalDate deadlineDate, String taskStatus,
+                Long budget, Long approvedBudget, LocalDate createdDate, LocalDate updatedDate,
                 Long userOrganizationId) {
         this.id = id;
         this.title = title;
@@ -61,11 +62,11 @@ public class Task {
         this.description = description;
     }
 
-    public Date getDeadlineDate() {
+    public LocalDate getDeadlineDate() {
         return deadlineDate;
     }
 
-    public void setDeadlineDate(Date deadlineDate) {
+    public void setDeadlineDate(LocalDate deadlineDate) {
         this.deadlineDate = deadlineDate;
     }
 
@@ -93,19 +94,19 @@ public class Task {
         this.approvedBudget = approvedBudget;
     }
 
-    public Date getCreatedDate() {
+    public LocalDate getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(LocalDate createdDate) {
         this.createdDate = createdDate;
     }
 
-    public Date getUpdatedDate() {
+    public LocalDate getUpdatedDate() {
         return updatedDate;
     }
 
-    public void setUpdatedDate(Date updatedDate) {
+    public void setUpdatedDate(LocalDate updatedDate) {
         this.updatedDate = updatedDate;
     }
 
@@ -130,15 +131,12 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return id.equals(task.id) &&
-                title.equals(task.title) &&
+        return title.equals(task.title) &&
                 description.equals(task.description) &&
                 Objects.equals(deadlineDate, task.deadlineDate) &&
                 taskStatus.equals(task.taskStatus) &&
                 Objects.equals(budget, task.budget) &&
                 Objects.equals(approvedBudget, task.approvedBudget) &&
-                createdDate.equals(task.createdDate) &&
-                Objects.equals(updatedDate, task.updatedDate) &&
                 userOrganizationId.equals(task.userOrganizationId) &&
                 Objects.equals(transactionList, task.transactionList);
     }

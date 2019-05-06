@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Component
@@ -18,17 +18,18 @@ public class TaskDaoImpl implements TaskDao {
 
     @Autowired
     public TaskDaoImpl(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public Optional<Task> create(Task task) {
         try {
-            this.jdbcTemplate.update(Queries.SQL_CREATE,
-                    task.getTitle(),            task.getDescription(),
-                    task.getDeadlineDate(),    task.getTaskStatus(),
-                    task.getBudget(),           task.getApprovedBudget(),
-                    CurrentDate.getCurDate(),   CurrentDate.getCurDate(),
+            jdbcTemplate.update(Queries.SQL_CREATE,
+                    task.getTitle(), task.getDescription(),
+                    task.getDeadlineDate(), task.getTaskStatus(),
+                    task.getBudget(), task.getApprovedBudget(),
+                    LocalDate.now(), LocalDate.now(),
                     task.getUserOrganizationId());
+
             return Optional.of(task);
         } catch (Exception e){
             e.printStackTrace();
@@ -38,11 +39,12 @@ public class TaskDaoImpl implements TaskDao {
 
     public Optional<Task> get(long id) {
         try {
-            return Optional.of(this.jdbcTemplate.queryForObject(Queries.SQL_GET_BY_ID,
-                   TaskMapper.getInstance(), (Long)id));
-        } catch (Exception e){
-            e.printStackTrace();
-            throw new DBOperationException(e.getMessage());
+            return Optional.ofNullable(jdbcTemplate.queryForObject(
+                    Queries.SQL_GET_BY_ID,
+                    TaskMapper.getInstance(),
+                    id));
+        } catch (Exception e) {
+            throw new DBOperationException("Get Task exception");
         }
     }
 
@@ -76,7 +78,7 @@ public class TaskDaoImpl implements TaskDao {
                 "approved_budget, created_date, updated_date," +
                 "users_organizations_id) values (?,?,?,?,?,?,?,?,?);";
 
-        String SQL_GET_BY_ID = "Select * from Tasks where id = ?;";
+        String SQL_GET_BY_ID = "select * from Tasks where id = ?";
 
         String SQL_UPDATE = "Update Tasks set title = ? , description = ?, " +
                 "deadline_date = ?, task_status = ?, budget = ?, " +
@@ -86,9 +88,9 @@ public class TaskDaoImpl implements TaskDao {
         String SQL_DELETE = "Delete from Tasks where id = ?;";
     }
 
-    private static class CurrentDate{
-        private static Date getCurDate(){
-            return new Date(System.currentTimeMillis());
+    private static class CurrentDate {
+        private static LocalDate getCurDate() {
+            return LocalDate.now();
         }
     }
 }

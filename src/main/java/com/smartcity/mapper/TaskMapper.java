@@ -15,11 +15,12 @@ public class TaskMapper  implements RowMapper<Task> {
         task.setId(resultSet.getLong("id"));
         task.setTitle(resultSet.getString("title"));
         task.setDescription(resultSet.getString("description"));
-        task.setDeadlineDate(resultSet.getDate("deadline_date"));
+        task.setDeadlineDate(resultSet.getDate("deadline_date").toLocalDate());
         task.setTaskStatus(resultSet.getString("task_status"));
+        task.setBudget(resultSet.getLong("budget"));
         task.setApprovedBudget(resultSet.getLong("approved_budget"));
-        task.setCreatedDate(resultSet.getDate("create_date"));
-        task.setUpdatedDate(resultSet.getDate("update_date"));
+        task.setCreatedDate(resultSet.getDate("created_date").toLocalDate());
+        task.setUpdatedDate(resultSet.getDate("updated_date").toLocalDate());
         task.setUserOrganizationId(resultSet.getLong("users_organizations_id"));
         return task;
 

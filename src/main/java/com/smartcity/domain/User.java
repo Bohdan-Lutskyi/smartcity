@@ -1,6 +1,7 @@
 package com.smartcity.domain;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Objects;
 
 public class User {
 
@@ -10,13 +11,13 @@ public class User {
     private String surname;
     private String name;
     private String phoneNumber;
-    private Date createdDate;
-    private Date updatedDate;
+    private LocalDate createdDate;
+    private LocalDate updatedDate;
 
     public User() {
     }
 
-    public User(Long id, String email, String password, String surname, String name, String phoneNumber, Date createdDate, Date updatedDate) {
+    public User(Long id, String email, String password, String surname, String name, String phoneNumber, LocalDate createdDate, LocalDate updatedDate) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -75,34 +76,38 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public Date getCreatedDate() {
+    public LocalDate getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(LocalDate createdDate) {
         this.createdDate = createdDate;
     }
 
-    public Date getUpdatedDate() {
+    public LocalDate getUpdatedDate() {
         return updatedDate;
     }
 
-    public void setUpdatedDate(Date updatedDate) {
+    public void setUpdatedDate(LocalDate updatedDate) {
         this.updatedDate = updatedDate;
     }
 
+
     @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof User){
-            User user = (User) obj;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return email.equals(user.email) &&
+                password.equals(user.password) &&
+                surname.equals(user.surname) &&
+                name.equals(user.name) &&
+                phoneNumber.equals(user.phoneNumber);
+    }
 
-            return this.getName().equals(user.getName()) &&
-                    this.getSurname().equals(user.getSurname()) &&
-                    this.getEmail().equals(user.getEmail()) &&
-                    this.getPhoneNumber().equals(user.getPhoneNumber());
-
-        }
-        return false;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, email, password, surname, name, phoneNumber, createdDate, updatedDate);
     }
 
     @Override
