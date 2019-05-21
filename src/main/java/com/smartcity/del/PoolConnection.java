@@ -15,7 +15,7 @@ public class PoolConnection {
     static{
         try {
             properties = new Properties();
-            properties.load(new FileInputStream("src/main/resources/db.properties"));
+            properties.load(new FileInputStream("src/main/resources/application-dev.properties"));
 
             dataSource = new ComboPooledDataSource();
             dataSource.setDriverClass(properties.getProperty("db.driverClassName"));
