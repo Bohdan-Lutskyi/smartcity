@@ -1,14 +1,14 @@
-package com.smartcity.exception;
+package com.smartcity.exceptions;
 
-public class DBOperationException extends RuntimeException{
+public class NotFoundException extends RuntimeException {
 
     private String name;
 
-    public DBOperationException(String message) {
+    public NotFoundException(String message) {
         super(message);
     }
 
-    public DBOperationException(String message, String name) {
+    public NotFoundException(String message, String name) {
         super(message);
         this.name = name;
     }

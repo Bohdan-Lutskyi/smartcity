@@ -1,7 +1,7 @@
 package com.smartcity.dao;
 
 import com.smartcity.domain.Task;
-import com.smartcity.exception.DBOperationException;
+import com.smartcity.exceptions.DbOperationException;
 import com.smartcity.mapper.TaskMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -33,7 +33,7 @@ public class TaskDaoImpl implements TaskDao {
             return Optional.of(task);
         } catch (Exception e){
             e.printStackTrace();
-            throw new DBOperationException(e.getMessage());
+            throw new DbOperationException(e.getMessage());
         }
     }
 
@@ -44,7 +44,7 @@ public class TaskDaoImpl implements TaskDao {
                     TaskMapper.getInstance(),
                     id));
         } catch (Exception e) {
-            throw new DBOperationException("Get Task exception");
+            throw new DbOperationException("Get Task exception");
         }
     }
 
@@ -59,7 +59,7 @@ public class TaskDaoImpl implements TaskDao {
             return Optional.of(task);
         }catch (Exception e){
             e.printStackTrace();
-            throw new DBOperationException(e.getMessage());
+            throw new DbOperationException(e.getMessage());
         }
     }
 
@@ -68,7 +68,7 @@ public class TaskDaoImpl implements TaskDao {
             return this.jdbcTemplate.update(Queries.SQL_DELETE,id)>0;
         }catch (Exception e){
             e.printStackTrace();
-            throw new DBOperationException(e.getMessage());
+            throw new DbOperationException(e.getMessage());
         }
     }
 

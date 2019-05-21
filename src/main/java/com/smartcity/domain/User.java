@@ -1,6 +1,9 @@
 package com.smartcity.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class User {
@@ -11,13 +14,15 @@ public class User {
     private String surname;
     private String name;
     private String phoneNumber;
-    private LocalDate createdDate;
-    private LocalDate updatedDate;
+    private boolean active;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.mm.dd'T'HH:mm:ss.SSS")
+    private LocalDateTime createdDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.mm.dd'T'HH:mm:ss.SSS")
+    private LocalDateTime updatedDate;
 
-    public User() {
-    }
+    public User() { }
 
-    public User(Long id, String email, String password, String surname, String name, String phoneNumber, LocalDate createdDate, LocalDate updatedDate) {
+    public User(Long id, String email, String password, String surname, String name, String phoneNumber, LocalDateTime createdDate, LocalDateTime updatedDate) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -76,38 +81,49 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public LocalDate getCreatedDate() {
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public LocalDateTime getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(LocalDate createdDate) {
+    public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
     }
 
-    public LocalDate getUpdatedDate() {
+    public LocalDateTime getUpdatedDate() {
         return updatedDate;
     }
 
-    public void setUpdatedDate(LocalDate updatedDate) {
+    public void setUpdatedDate(LocalDateTime updatedDate) {
         this.updatedDate = updatedDate;
     }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return email.equals(user.email) &&
-                password.equals(user.password) &&
-                surname.equals(user.surname) &&
-                name.equals(user.name) &&
-                phoneNumber.equals(user.phoneNumber);
+        return active == user.active &&
+                Objects.equals(id, user.id) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(surname, user.surname) &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(phoneNumber, user.phoneNumber) &&
+                Objects.equals(createdDate, user.createdDate) &&
+                Objects.equals(updatedDate, user.updatedDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, password, surname, name, phoneNumber, createdDate, updatedDate);
+        return Objects.hash(id, email, password, surname, name, phoneNumber, active, createdDate, updatedDate);
     }
 
     @Override
@@ -119,6 +135,7 @@ public class User {
                 ", surname='" + surname + '\'' +
                 ", name='" + name + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", active=" + active +
                 ", createdDate=" + createdDate +
                 ", updatedDate=" + updatedDate +
                 '}';
